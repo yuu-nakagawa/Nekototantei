@@ -24,7 +24,9 @@ public class PanelChanger : MonoBehaviour
         Panel9,
         Panel10,
         Panel11,
-        Panel12
+        Panel12,
+        Panel13,
+        Panel14
     }
     Panel currentPanel = Panel.Panel0;
 
@@ -109,6 +111,12 @@ public class PanelChanger : MonoBehaviour
             this.transform.localPosition = new Vector2(-4600, 3900);
             modoruYajirushi.SetActive(true);
         }
+        else if (nextPanel == Panel.Panel12)
+        {
+            //Panel10(手帳)を表示したい：Parentの位置を(0, -5200,0)
+            this.transform.localPosition = new Vector2(0, 5200);
+            modoruYajirushi.SetActive(true);
+        }
     }
     public void OnPanel0_nishi()
     {
@@ -179,6 +187,11 @@ public class PanelChanger : MonoBehaviour
             //Panel0(北)を表示
             ShowPanel(Panel.Panel1);
         }
+        else if (currentPanel == Panel.Panel12)
+        {
+            //Panel2(東)を表示
+            ShowPanel(Panel.Panel2);
+        }
     }
 
     //タップしたらPanelを表示
@@ -227,5 +240,10 @@ public class PanelChanger : MonoBehaviour
     {
         //Panel11を表示したい：Parentの位置を(4600,-3900,0)
         ShowPanel(Panel.Panel11);
+    }
+    public void Onhyouhon_nyuryoku()
+    {
+        //Panel12を表示したい：Parentの位置を(0,-5200,0)
+        ShowPanel(Panel.Panel12);
     }
 }
