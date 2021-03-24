@@ -13,7 +13,9 @@ public class Item : MonoBehaviour
     public enum Type
     {
         NekojarashiA,
-        NekojarashiB
+        NekojarashiB,
+        KagiA,
+
     }
 
     public Type type;
