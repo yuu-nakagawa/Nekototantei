@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Gametitle.unity
+    path: Assets/Scenes/Gametitle.unity
     guid: 4430038ec56a8ab4986aa81e0e43e71c
   - enabled: 1
-    path: Assets/higashi.unity
+    path: Assets/Scenes/higashi.unity
     guid: 0494d2a61dd4c7b479aaa9f9e68a1a27
   m_configObjects: {}
