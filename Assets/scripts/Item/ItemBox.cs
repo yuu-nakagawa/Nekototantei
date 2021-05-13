@@ -1,81 +1,90 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
-    /*
-    public GameObject Itemimage0;
-    public GameObject Itemimage1;
-    public GameObject Itemimage2;
-    public GameObject Itemimage3;
-    public GameObject Itemimage4;
-    public GameObject Itemimage5;
-    */
-
-    //é…åˆ—ã‚’ä½¿ã†ã¨ç®¡ç†ãŒæ¥½ã«ãªã‚‹
-    public GameObject[] boxs;
-
-    //å‡¦ç†
-    //TODO:ã‚¢ã‚¤ãƒ†ãƒ ãƒœãƒƒã‚¯ã‚¹ã«ã‚¢ã‚¤ãƒ†ãƒ (ã­ã“ã˜ã‚ƒã‚‰ã—)ã‚’æ ¼ç´ã™ã‚‹ï¼šç”»åƒã‚’è¡¨ç¤ºã•ã›ã‚‹
-    //ç‰¹å®šã®ã‚¢ã‚¤ãƒ†ãƒ ã‚’æŒã£ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’èª¿ã¹ã‚‹
-    //ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½¿ç”¨ã™ã‚‹ï¼šç”»åƒã‚’éè¡¨ç¤ºã«ã™ã‚‹
-
-    //staticåŒ–ã—ã¦ã€ã©ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã§ã‚‚å‚ç…§ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
+    //‚â‚è‚½‚¢‚±‚Æ
+    //slot‚ª‹ó‚¢‚Ä‚½‚çAã‚©‚ç“ü‚ê‚Ä‚¢‚­
+    [SerializeField] Slot[] slots;
+    [SerializeField] Slot selectedSlot = null;
+    //‚Ç‚±‚Å‚àÀs‚Å‚«‚é‚â‚Â
     public static ItemBox instance;
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            slots = GetComponentsInChildren<Slot>();
+        }
     }
-    
-    public void SetItem(Item.Type type)
+    // PickupObj‚ªƒNƒŠƒbƒN‚³‚ê‚½‚çAƒXƒƒbƒg‚ÉƒAƒCƒeƒ€‚ğ“ü‚ê‚é
+    public void SetItem(Item item)
     {
-        int index = (int)type; //NekojarashiAã¯0ã€NekojarashiBã¯1
-        boxs[index].SetActive(true);
+        foreach (Slot slot in slots)
+        {
+            if (slot.IsEmpty())
+            {
+                slot.SetItem(item);
+                break;
+            }
+        }
         /*
-        if (type == Item.Type.NekojarashiA)
+        if (slots[0].IsEmpty())
         {
-            Itemimage0.SetActive(true);
-            boxs[0].SetActive(true);
+            slots[0].SetItem(item);
         }
-        else if (type == Item.Type.NekojarashiB)
+        else if (slots[1].IsEmpty())
         {
-            Itemimage1.SetActive(true);
-            boxs[1].SetActive(true);
+            slots[1].SetItem(item);
         }
-        */
-        
+        else if (slots[2].IsEmpty())
+        {
+            slots[2].SetItem(item);
+        }
+        //Debug.Log(type); */
     }
-    public bool CanUseItem(Item.Type type)
+
+    public void OnSelectSlot(int position)
     {
-        //ã‚¢ã‚¤ãƒ†ãƒ ã‚’ä½¿ãˆã‚‹ã‹ã©ã†ã‹ã¯ã€è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ãŒã‚ã‹ã‚Œã°ã„ã„
-        //è¡¨ç¤ºã•ã‚Œã¦ã„ã‚‹ã‹ã©ã†ã‹ã¯ã€activeselfã‚’ä½¿ãˆã°ã„ã„
-        int index = (int)type; //NekojarashiAã¯0ã€NekojarashiBã¯1
-        return boxs[index].activeSelf;
-        /*
-        if (type == Item.Type.NekojarashiA)
+        //ˆê’U‘S‚Ä‚ÌƒXƒƒbƒg‚Ì‘I‘ğƒpƒlƒ‹‚ğ”ñ•\¦
+        foreach (Slot slot in slots)
         {
-            return Itemimage0.activeSelf;
+            slot.HideBGPanel();
         }
-        if (type == Item.Type.NekojarashiB)
+        selectedSlot = null;
+
+        //‘I‘ğ‚³‚ê‚½ƒXƒƒbƒg‚Ì‘I‘ğƒpƒlƒ‹‚ğ•\¦
+        if (slots[position].OnSelected())
         {
-            return Itemimage1.activeSelf;
+            selectedSlot = slots[position];
+        }
+    }
+
+    //ƒAƒCƒeƒ€‚Ìg—p‚ğ‚İ‚é&g‚¦‚é‚È‚çg‚Á‚Ä‚µ‚Ü‚¤
+    public bool TryUseItem(Item.Type type)
+    {
+        //‘I‘ğƒXƒƒbƒg‚ª‚ ‚é‚©‚Ç‚¤‚©
+        if (selectedSlot == null)
+        {
+            return false;
+        }
+        if (selectedSlot.GetItem().type == type)
+        {
+            selectedSlot.SetItem(null);
+            selectedSlot.HideBGPanel();
+            selectedSlot = null;
+            return true;
         }
         return false;
-        */
     }
-    public void UseItem(Item.Type type)
+
+    public Item GetSelectedItem()
     {
-        int index = (int)type; //NekojarashiAã¯0ã€NekojarashiBã¯1
-        boxs[index].SetActive(false);
-        /*
-        if (type == Item.Type.NekojarashiA)
+        if (selectedSlot == null)
         {
-            Itemimage0.SetActive(false);
+            return null;
         }
-        else if (type == Item.Type.NekojarashiB)
-        {
-            Itemimage1.SetActive(false);
-        }*/
+        return selectedSlot.GetItem();
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PickupObj : MonoBehaviour
 {
-    [SerializeField] Item1.Type itemType;
-    Item1 item;
+    [SerializeField] Item.Type itemType;
+    Item item;
     //[SerializeField] Item1 item;
     //ÉNÉäÉbÉNÇµÇΩÇÁè¡Ç∑
 
@@ -16,14 +16,14 @@ public class PickupObj : MonoBehaviour
     }
     public void OnClickObj()
     {
-        ItemBox1.instance.SetItem(item);
+        ItemBox.instance.SetItem(item);
         gameObject.SetActive(false);
     }
-
+    /*
     public void OnClickNekojarashiA()
     {
-        //ItemBox1.instance.SetItem(item);
+        //ItemBox.instance.SetItem(item);
         
         gameObject.SetActive(false);
-    }
+    } */
 }

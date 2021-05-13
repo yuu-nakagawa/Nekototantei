@@ -1,30 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Item : MonoBehaviour
+[Serializable]
+public class Item
 {
-    //クリックしたときに、アイテムBOXに格納
-    //タイミング：クリックしたとき
-    //処理：アイテムBOXに格納され、非表示になる。
-
-    //種類がある：列挙型で管理
     public enum Type
     {
         NekojarashiA,
         NekojarashiB,
         KagiA,
-
+        fukinA,
+        NekojarashiA1,
     }
 
-    public Type type;
+    public Type type;       //���
+    public Sprite sprite;  //Slot�ɕ\������摜
+    public GameObject zoomObj;
 
-    //タイミング：クリックしたとき
-    public void OnThis()
+    public Item(Type type, Sprite sprite, GameObject zoomObj)
     {
-        ItemBox.instance.SetItem(type);  //TODO：アイテムBOXに格納する
-        gameObject.SetActive(false);  //非表示にする
-        //Debug.Log(type + "を取得");
+        this.type = type;
+        this.sprite = sprite;
+        this.zoomObj = zoomObj;
     }
 }

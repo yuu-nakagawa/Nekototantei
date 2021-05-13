@@ -20,10 +20,10 @@ public class YokosenButton : MonoBehaviour
     //現在のマーク
     enum Mark
     {
-        Maru = 0,
-        Sankaku = 1,
-        Hosi = 2,
-        Daia = 3,
+        Maru,
+        Sankaku,
+        Hosi,
+        Daia,
     }
     Mark currentMark0 = Mark.Maru;
     Mark currentMark1 = Mark.Maru;
@@ -110,7 +110,17 @@ public class YokosenButton : MonoBehaviour
                 {
                     currentMark3++;
                 }
-                break;            
+                break;
+        }
+        
+        if ((currentMark0 == Mark.Daia)
+            && (currentMark1 == Mark.Hosi)
+            && (currentMark2 == Mark.Maru)
+            && (currentMark3 == Mark.Sankaku))
+        {
+            GameObject.Find("Canvas/PanelParent").transform.localPosition = new Vector2(-4600, 6500);
+            GameObject.Find("higashiPanel/takarabako_button").SetActive(false);
+            GameObject.Find("higashiPanel").transform.Find("takarabako_aki_button").gameObject.SetActive(true);
         }
     }
     //・マーク変数に応じた画像を表示する
@@ -152,4 +162,28 @@ public class YokosenButton : MonoBehaviour
         }
         return null;
     }
+    /*
+    public void CheckClear()
+    {
+        if (IsClear())
+        {
+            Debug.Log("クリア");
+            ClearEvent.Invoke();
+        }
+
+        bool IsClear()
+        {
+            //正解しているかどうか
+            //=>1つでも一致しなければfalse
+            //=>全てのチェックをクリアすればtrue
+            for (int i = 0; i < correctNumbers.Length; i++)
+            {
+                if (passwordButtons[i].number != correctNumbers[i])
+                {
+                    return false;
+                }
+            }
+        }
+    }*/
 }
+

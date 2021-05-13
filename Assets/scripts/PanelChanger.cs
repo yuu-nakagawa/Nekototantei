@@ -28,7 +28,10 @@ public class PanelChanger : MonoBehaviour
         Panel13,
         Panel14,
         Panel15,
-        Panel16
+        Panel16,
+        Panel17,
+        Panel18,
+        Panel19,
 
     }
     Panel currentPanel = Panel.Panel0;
@@ -144,6 +147,12 @@ public class PanelChanger : MonoBehaviour
             this.transform.localPosition = new Vector2(-2300, 6500);
             modoruYajirushi.SetActive(true);
         }
+        else if (nextPanel == Panel.Panel17)
+        {
+            //Panel17(宝箱開いた)を表示したい：Parentの位置を(4600, -6500,0)
+            this.transform.localPosition = new Vector2(-4600, 6500);
+            modoruYajirushi.SetActive(true);
+        }
     }
     public void OnPanel0_nishi()
     {
@@ -239,6 +248,11 @@ public class PanelChanger : MonoBehaviour
             //Panel2(東)を表示
             ShowPanel(Panel.Panel2);
         }
+        else if (currentPanel == Panel.Panel17)
+        {
+            //Panel2(東)を表示
+            ShowPanel(Panel.Panel2);
+        }
     }
 
     //タップしたらPanelを表示
@@ -246,6 +260,11 @@ public class PanelChanger : MonoBehaviour
     {
         //Panel3を表示したい：Parentの位置を(0,1300,0)
         ShowPanel(Panel.Panel3);
+    }
+    public void OnTakarabako1()
+    {
+        //Panel3を表示したい：Parentの位置を(0,1300,0)
+        ShowPanel(Panel.Panel17);
     }
     public void Onkohimeka()
     {

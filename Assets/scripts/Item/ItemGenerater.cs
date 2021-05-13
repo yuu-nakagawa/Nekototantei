@@ -14,14 +14,25 @@ public class ItemGenerater : MonoBehaviour
             instance = this;
         }
     }
-    public Item1 Spawn(Item1.Type type)
+    public Item Spawn(Item.Type type)
     {
         //itemList‚Ì’†‚©‚çtype‚Æˆê’v‚µ‚½‚ç“¯‚¶item‚ğ¶¬‚µ‚Ä“n‚·
-        foreach (Item1 item in itemListEntity.itemList)
+        foreach (Item item in itemListEntity.itemList)
         {
             if (item.type == type)
             {
-                return new Item1(item.type,item.sprite);
+                return new Item(item.type,item.sprite, item.zoomObj);
+            }
+        }
+        return null;
+    }
+    public GameObject GetZoomItem(Item.Type type)
+    {
+        foreach (Item item in itemListEntity.itemList)
+        {
+            if (item.type == type)
+            {
+                return item.zoomObj;
             }
         }
         return null;
