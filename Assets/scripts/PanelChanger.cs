@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,10 @@ public class PanelChanger : MonoBehaviour
         Panel17,
         Panel18,
         Panel19,
+        Panel20,
+        Panel21,
+        Panel22,
+        Panel23,
 
     }
     Panel currentPanel = Panel.Panel0;
@@ -44,114 +49,107 @@ public class PanelChanger : MonoBehaviour
     void ShowPanel(Panel nextPanel)
     {
         currentPanel = nextPanel;
+        modoruYajirushi.SetActive(true);
 
         if (nextPanel == Panel.Panel0)
         {
             //Panel0(西)を表示したい：Parentの位置を(0,0,0)
-            this.transform.localPosition = new Vector2(0, 0);
-            modoruYajirushi.SetActive(false);
+            this.transform.localPosition = new Vector2(0, 0);   
         }
         else if (nextPanel == Panel.Panel1)
         { 
             //Panel1(北)を表示したい：Parentの位置を(-2300,0,0)  
             this.transform.localPosition = new Vector2(-2300, 0);
-            modoruYajirushi.SetActive(false);
         }
         else if (nextPanel == Panel.Panel2)
         {
             //Panel2(東)を表示したい：Parentの位置を(4600,0,0)
             this.transform.localPosition = new Vector2(-4600, 0);
-            modoruYajirushi.SetActive(false);
         }
         else if (nextPanel == Panel.Panel3)
         {
             //Panel3(宝箱)を表示したい：Parentの位置を(0,1300,0)
             this.transform.localPosition = new Vector2(0, 1300);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel4)
         {
             //Panel4(コーヒーメーカー)を表示したい：Parentの位置を(2300,-1300,0)
             this.transform.localPosition = new Vector2(-2300, 1300);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel5)
         {
             //Panel5(引き出し1)を表示したい：Parentの位置を(4600,-1300,0)
             this.transform.localPosition = new Vector2(-4600, 1300);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel6)
         {
             //Panel6(引き出しあける)を表示したい：Parentの位置を(0,-2600,0)
             this.transform.localPosition = new Vector2(0, 2600);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel7)
         {
             //Panel7(足跡)を表示したい：Parentの位置を(2300,-2600,0)
             this.transform.localPosition = new Vector2(-2300, 2600);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel8)
         {
             //Panel8(標本)を表示したい：Parentの位置を(4600,-2600,0)
             this.transform.localPosition = new Vector2(-4600, 2600);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel9)
         {
             //Panel9(鹿)を表示したい：Parentの位置を(0,-3900,0)
             this.transform.localPosition = new Vector2(0, 3900);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel10)
         {
             //Panel10(手帳)を表示したい：Parentの位置を(2300,-3900,0)
             this.transform.localPosition = new Vector2(-2300, 3900);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel11)
         {
             //Panel11(レコード)を表示したい：Parentの位置を(4600,-3900,0)
             this.transform.localPosition = new Vector2(-4600, 3900);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel12)
         {
             //Panel12(標本ボタンパネル)を表示したい：Parentの位置を(0, -5200,0)
             this.transform.localPosition = new Vector2(0, 5200);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel13)
         {
             //Panel13(引き出し2)を表示したい：Parentの位置を(2300, -5200,0)
             this.transform.localPosition = new Vector2(-2300, 5200);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel14)
         {
             //Panel14(引き出し2開く)を表示したい：Parentの位置を(4600, -5200,0)
             this.transform.localPosition = new Vector2(-4600, 5200);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel15)
         {
             //Panel15(引き出し3)を表示したい：Parentの位置を(0, -6500,0)
             this.transform.localPosition = new Vector2(0, 6500);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel16)
         {
             //Panel16(引き出し3開く)を表示したい：Parentの位置を(2300, -6500,0)
             this.transform.localPosition = new Vector2(-2300, 6500);
-            modoruYajirushi.SetActive(true);
         }
         else if (nextPanel == Panel.Panel17)
         {
             //Panel17(宝箱開いた)を表示したい：Parentの位置を(4600, -6500,0)
             this.transform.localPosition = new Vector2(-4600, 6500);
-            modoruYajirushi.SetActive(true);
+        }
+        else if (nextPanel == Panel.Panel18)
+        {
+            //Panel18(地図画面)を表示したい：Parentの位置を(0, -7800,0)
+            this.transform.localPosition = new Vector2(0, 7800);
+        }
+        else if (nextPanel == Panel.Panel19)
+        {
+            //Panel19(まんま大盛)を表示したい：Parentの位置を(2300, -7800,0)
+            this.transform.localPosition = new Vector2(-2300, 7800);
         }
     }
     public void OnPanel0_nishi()
@@ -187,6 +185,8 @@ public class PanelChanger : MonoBehaviour
         {
             //Panel1(北)を表示
             ShowPanel(Panel.Panel1);
+            Array.Resize(ref AshiatoButtun.nyuuryoku, 0);
+            
         }
         else if (currentPanel == Panel.Panel5)
         {
@@ -249,6 +249,16 @@ public class PanelChanger : MonoBehaviour
             ShowPanel(Panel.Panel2);
         }
         else if (currentPanel == Panel.Panel17)
+        {
+            //Panel2(東)を表示
+            ShowPanel(Panel.Panel2);
+        }
+        else if (currentPanel == Panel.Panel18)
+        {
+            //Panel2(東)を表示
+            ShowPanel(Panel.Panel2);
+        }
+        else if (currentPanel == Panel.Panel19)
         {
             //Panel2(東)を表示
             ShowPanel(Panel.Panel2);
@@ -331,5 +341,17 @@ public class PanelChanger : MonoBehaviour
     {
         //Panel12を表示したい：Parentの位置を(0,-5200,0)
         ShowPanel(Panel.Panel12);
+    }
+
+    public void Onhyouhon_aki()
+    {
+        //Panel18を表示したい：Parentの位置を(0,-7800,0)
+        ShowPanel(Panel.Panel18);
+    }
+
+    public void OnmannmaOomori()
+    {
+        //Panel19を表示したい：Parentの位置を(0,-7800,0)
+        ShowPanel(Panel.Panel19);
     }
 }

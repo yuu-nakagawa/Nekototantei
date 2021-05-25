@@ -21,5 +21,6 @@ public class Kagi : MonoBehaviour
         KagiA1.SetActive(false);
         //Œ®A‚ð•\Ž¦‚·‚é
         KagiA.SetActive(true);
+        GameObject.Find("ModoruYajirushi").SetActive(false);
     }
 }

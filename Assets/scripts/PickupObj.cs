@@ -18,6 +18,7 @@ public class PickupObj : MonoBehaviour
     {
         ItemBox.instance.SetItem(item);
         gameObject.SetActive(false);
+        GameObject.Find("Yajirushi").transform.Find("ModoruYajirushi").gameObject.SetActive(true);
     }
     /*
     public void OnClickNekojarashiA()

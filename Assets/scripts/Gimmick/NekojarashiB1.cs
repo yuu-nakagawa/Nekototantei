@@ -21,6 +21,6 @@ public class NekojarashiB1 : MonoBehaviour
         Nekojarashi_B1.SetActive(false);
         //”L‚¶‚á‚ç‚µB‚ð•\Ž¦‚·‚é
         Nekojarashi_B.SetActive(true);
-
+        GameObject.Find("ModoruYajirushi").SetActive(false);
     }
 }

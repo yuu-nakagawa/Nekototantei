@@ -17,7 +17,7 @@ public class Slot : MonoBehaviour
 
     private void Start()
     {
-        backgroundPanel.SetActive(false);
+        backgroundPanel.SetActive(true);
     }
 
     public bool IsEmpty()
@@ -57,12 +57,12 @@ public class Slot : MonoBehaviour
         {
             return false;
         }
-        backgroundPanel.SetActive(true);
+        backgroundPanel.SetActive(false);
         return true;
      }
 
     public void HideBGPanel()
      {
-    backgroundPanel.SetActive(false);
+    backgroundPanel.SetActive(true);
      }
 }

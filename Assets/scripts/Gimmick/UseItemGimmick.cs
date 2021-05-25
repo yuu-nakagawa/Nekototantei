@@ -21,4 +21,18 @@ public class UseItemGimmick : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    public void OnClickPanel()
+    {
+        //Debug.Log("クリックしたよ");
+        //アイテム鍵を持っているかどうか
+        bool clear = ItemBox.instance.TryUseItem(clearItem);
+        if (clear == true)
+        {
+            //Debug.Log("ギミック解除");
+            gameObject.SetActive(false);
+            //手帳を開いたパネルを表示する
+            GameObject.Find("Panel10").transform.Find("techohiraku_Panel").gameObject.SetActive(true);
+        }
+    }
 }
