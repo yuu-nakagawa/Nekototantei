@@ -1,19 +1,20 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class AshiatoButtun : MonoBehaviour
+public class TsunoButtun : MonoBehaviour
 {
     //正解
-    public int[] answer = { 1, 0, 2, 0, 3, 0 };
-    //public Image[] answer = {};
+    public int[] answer = { 1, 1, 1, 0, 0, 1, 1, 0 };
 
     //入力配列
     public static int[] nyuuryoku = new int[0];
     
     public void Ithibyou()
     {
-        GameObject.Find("kohimekaButtunPanel").SetActive(false);
-        GameObject.Find("Panel4").transform.Find("kohimeka_akiPanel").gameObject.SetActive(true);
+        GameObject.Find("shikaPanel").SetActive(false);
+        GameObject.Find("Panel9").transform.Find("shika_akiPanel").gameObject.SetActive(true);
     }
     //入力
     public void OnClick(int position)
@@ -22,16 +23,13 @@ public class AshiatoButtun : MonoBehaviour
         Array.Resize(ref nyuuryoku, nyuuryoku.Length + 1);
         nyuuryoku[nyuuryoku.Length - 1] = position;
 
-        if (nyuuryoku.Length == 6)
+        if (nyuuryoku.Length == 8)
         {
-            //正解したらkohimekaButtunPanelを非表示
-            //kohimeka_akiPanelを表示する
+            //正解したらshikaPanelを非表示
+            //shika_akiPanelを表示する
             if (Answer() == true)
             {
-                //GameObject.Find("kohimekaButtunPanel").SetActive(false);
-                //GameObject.Find("Panel4").transform.Find("kohimeka_akiPanel").gameObject.SetActive(true);
                 Invoke("Ithibyou", 1.0f);
-                //Invoke("Nibyou", 1.0f);
             }
             else
             {
@@ -52,7 +50,5 @@ public class AshiatoButtun : MonoBehaviour
         }
         return true;
     }
-
-
 }
 

@@ -11,6 +11,7 @@ public class Item
         KagiA,
         fukinA,
         NekojarashiA1,
+        rekodo_totteA,
     }
 
     public Type type;       //Ží—Þ
